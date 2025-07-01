@@ -1,8 +1,14 @@
 
 /* Prepare database for REST API ingestion (sink)
 
-Instructions: Authenticate with development server/DB and run the following script
+Instructions: 
+- Authenticate with development server/DB and run the following script
+- Note: adjust table names in accordance with ".env" customization:
+  - SQL_SCHEMA (default: dev)
+  - BI_STAGING_TABLE (default: staging_usage)
+  - BI_LOG_TABLE (default: etl_log)
 
+Meta data:
 - Author: vsm
 - Date: 2025-06-30
 - Team: GS - BI/ERP
