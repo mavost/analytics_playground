@@ -40,6 +40,7 @@ DROP TABLE IF EXISTS dev.etl_log;
 -- Create a table to log ETL run details (for tracking and auditing)
 CREATE TABLE dev.etl_log (
     run_time DATETIME,           -- Timestamp when the ETL job ran
+    service_name VARCHAR(30),    -- Name of the ETL job
     success BIT,                 -- 1 = Success, 0 = Failure
     inserted_rows INT,           -- Number of new rows inserted during the run
     max_event_time DATETIME      -- Latest timestamp found in inserted data or max data in case nothing was added
