@@ -31,22 +31,18 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA dev TO spotify_user
 ALTER DEFAULT PRIVILEGES IN SCHEMA dev
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO spotify_user;
 
--- Create a new schema called 'dev'
-CREATE SCHEMA IF NOT EXISTS dev;
+-- Drop the 'staging_playback_data' table if it exists
+DROP TABLE IF EXISTS dev.staging_playback_data;
 
--- Drop the 'staging_usage' table if it exists
-DROP TABLE IF EXISTS dev.staging_usage;
-
--- Create the 'staging_usage' table
-CREATE TABLE dev.staging_usage (
-  CREATE TABLE playback_data (
+-- Create the 'staging_playback_data' table
+CREATE TABLE dev.staging_playback_data (
     event_time TIMESTAMPTZ,     -- PostgreSQL equivalent of DATETIME
     data_json TEXT,             -- TEXT is appropriate for JSON in raw form
     hash CHAR(64)               -- SHA-256 style hash
 );
 
 -- Create a unique index on the 'hash' column
-CREATE UNIQUE INDEX idx_hash_unique ON dev.staging_usage (hash);
+CREATE UNIQUE INDEX idx_hash_unique ON dev.staging_playback_data (hash);
 
 -- Drop the 'etl_log' table if it exists
 DROP TABLE IF EXISTS dev.etl_log;
